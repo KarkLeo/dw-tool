@@ -8,12 +8,10 @@
   padding: var(--p);
   box-sizing: border-box;
 
-  background-image: url("bg.jpg");
+  background-image: url('bg.jpg');
   background-size: cover;
   background-attachment: fixed;
 }
-
-
 
 .inner {
   position: relative;

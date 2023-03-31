@@ -9,8 +9,30 @@
     "chaotic": "Spur others to significant and unplanned decisive action."
   },
   "names": {
-    "elf": ["Astrafel", "Daelwyn", "Feliana", "Damarra", "Sistranalle", "Pendrell", "Melliandre", "Dagoliir"],
-    "human": ["Baldric", "Leena", "Dunwick", "Willem", "Edwyn", "Florian", "Seraphine", "Quorra", "Charlotte", "Lily", "Ramonde", "Cassandra"]
+    "elf": [
+      "Astrafel",
+      "Daelwyn",
+      "Feliana",
+      "Damarra",
+      "Sistranalle",
+      "Pendrell",
+      "Melliandre",
+      "Dagoliir"
+    ],
+    "human": [
+      "Baldric",
+      "Leena",
+      "Dunwick",
+      "Willem",
+      "Edwyn",
+      "Florian",
+      "Seraphine",
+      "Quorra",
+      "Charlotte",
+      "Lily",
+      "Ramonde",
+      "Cassandra"
+    ]
   },
   "looks": [
     ["Knowing Eyes", "Fiery Eyes", "Joyous Eyes"],

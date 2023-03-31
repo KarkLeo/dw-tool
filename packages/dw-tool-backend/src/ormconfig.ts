@@ -1,4 +1,4 @@
-import { DataSource, DataSourceOptions } from 'typeorm';
+import { DataSource, DataSourceOptions } from 'typeorm'
 
 export const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',
@@ -10,8 +10,8 @@ export const dataSourceOptions: DataSourceOptions = {
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
   migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
   synchronize: false,
-};
+}
 
-const dataSource = new DataSource(dataSourceOptions);
+const dataSource = new DataSource(dataSourceOptions)
 
-export default dataSource;
+export default dataSource

@@ -11,7 +11,6 @@ import test from 'dw-tool-meta'
 export const AuthPage = () => {
   const dispatch = useAppDispatch()
 
-
   console.log(test())
   const user = useSelector(userDataSelector)
 

@@ -8,7 +8,7 @@
 
   border-radius: 0.25rem;
   border: 1px solid greenyellow;
-  background-color: #ADFF2F55;
+  background-color: #adff2f55;
 }
 
 .tag:hover .value {
@@ -18,4 +18,3 @@
 .value {
   /*display: none;*/
 }
-

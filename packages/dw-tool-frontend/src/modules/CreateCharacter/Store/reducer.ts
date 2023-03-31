@@ -4,7 +4,7 @@ import { initState } from 'src/modules/CreateCharacter/Store/initState'
 import * as actions from './actions'
 
 type ActionsName = keyof typeof actions
-type Action = ReturnType<typeof actions[ActionsName]>
+type Action = ReturnType<(typeof actions)[ActionsName]>
 
 export const reducer = (
   state: CharacterDataModel = initState,

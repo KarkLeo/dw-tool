@@ -26,12 +26,10 @@
   border: 1px solid black;
 
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-
-
 }
 
 .side::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -43,23 +41,23 @@
   background-color: deepskyblue;
 
   /*transform: scale(0.8);*/
-  opacity: .95;
+  opacity: 0.95;
 }
 
-.side_1 {}
+.side_1 {
+}
 .side_2 {
   transform-origin: 0 100%;
   perspective: none;
-  transform: rotateZ(-60deg) rotateX(109.68deg)
-
+  transform: rotateZ(-60deg) rotateX(109.68deg);
 }
 .side_3 {
   transform-origin: 100% 100%;
   perspective: none;
-  transform:rotateZ(60deg) rotateX(109.68deg);
+  transform: rotateZ(60deg) rotateX(109.68deg);
 }
 .side_4 {
   transform-origin: 0 100%;
   perspective: none;
-  transform: rotateZ(-180deg) translateX(-100%) rotateX(109.68deg) ;
+  transform: rotateZ(-180deg) translateX(-100%) rotateX(109.68deg);
 }

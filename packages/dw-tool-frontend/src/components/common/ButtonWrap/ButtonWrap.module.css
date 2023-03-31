@@ -6,22 +6,24 @@
 
   border: none;
   background: transparent;
-  filter: brightness(0) invert(0.6) sepia(1) saturate(63%) hue-rotate(5deg) drop-shadow(2px 4px 6px black);;
+  filter: brightness(0) invert(0.6) sepia(1) saturate(63%) hue-rotate(5deg)
+    drop-shadow(2px 4px 6px black);
   cursor: pointer;
 
   transition: filter ease-in-out 150ms;
 }
 
 .root:hover,
-.root.active{
-  filter: brightness(0) invert(0.45) sepia(1) saturate(300%) hue-rotate(-16deg) drop-shadow(2px 4px 6px black);;
+.root.active {
+  filter: brightness(0) invert(0.45) sepia(1) saturate(300%) hue-rotate(-16deg)
+    drop-shadow(2px 4px 6px black);
 }
 
 @keyframes pressAnim {
- 0% {
-   opacity: 0;
-   filter: blur(10px);
- }
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+  }
   25% {
     opacity: 0.5;
     filter: blur(150px);

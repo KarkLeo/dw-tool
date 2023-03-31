@@ -1,4 +1,3 @@
-
 export default () => {
-  return 'test--v1'
-}
+  return "test--v1";
+};

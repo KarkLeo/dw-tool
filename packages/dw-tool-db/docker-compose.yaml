@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   dw_tool_db:
@@ -6,6 +6,6 @@ services:
     ports:
       - "5432:5432"
     environment:
-        POSTGRES_USER: dw_tool
-        POSTGRES_PASSWORD: dw_tool
+      POSTGRES_USER: dw_tool
+      POSTGRES_PASSWORD: dw_tool
     image: postgres:15.2-alpine3.17
