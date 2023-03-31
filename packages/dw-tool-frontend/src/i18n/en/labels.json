@@ -1,0 +1,20 @@
+{
+  "name": "Name",
+  "level": "Level",
+
+  "look": "Look",
+  "body": "Body",
+  "eyes": "Eyes",
+  "hair": "Hair",
+  "clothes": "Clothes",
+
+  "alignment": "Alignment",
+  "bonds": "Bonds",
+  "race": "Race",
+
+  "startingMoves": "Starting moves",
+  "advancedMoves": "advancedMoves",
+
+  "coin": "coin",
+  "startingGear": "Starting gear"
+}

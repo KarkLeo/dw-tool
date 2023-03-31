@@ -1,0 +1,28 @@
+{
+  "races": {
+    "elf": "When you enter an important location (your call) you can ask the GM for one fact from the history of that location.",
+    "human": "When you first enter a civilized settlement someone who respects the custom of hospitality to minstrels will take you in as their guest."
+  },
+  "alignments": {
+    "good": "Perform your art to aid someone else.",
+    "neutral": "Avoid a conflict or defuse a tense situation.",
+    "chaotic": "Spur others to significant and unplanned decisive action."
+  },
+  "names": {
+    "elf": ["Astrafel", "Daelwyn", "Feliana", "Damarra", "Sistranalle", "Pendrell", "Melliandre", "Dagoliir"],
+    "human": ["Baldric", "Leena", "Dunwick", "Willem", "Edwyn", "Florian", "Seraphine", "Quorra", "Charlotte", "Lily", "Ramonde", "Cassandra"]
+  },
+  "looks": [
+    ["Knowing Eyes", "Fiery Eyes", "Joyous Eyes"],
+    ["FancyHair", "Wild Hair", "Stylish Cap"],
+    ["Finery", "Traveling Clothes", "Poor Clothes"],
+    ["Fit Body", "Well-fed Body", "Thin Body"]
+  ],
+  "bonds": [
+    "This is not my first adventure with  <input />.",
+    "I sang stories of <input /> long before I ever met them in person. <input /> is often the butt of my jokes.",
+    "I am writing a ballad about the adventures of <input />.",
+    "<input /> trusted me with a secret.",
+    "<input /> does not trust me, and for good reason."
+  ]
+}

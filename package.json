@@ -1,0 +1,12 @@
+{
+  "name": "dw-tool",
+  "privet": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "db": "npm run start --workspace=dw-tool-db",
+    "backend": "npm run start:dev --workspace=dw-tool-backend",
+    "frontend": "npm run start --workspace=dw-tool-frontend"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "bard":  "Bard",
+  "cleric":  "Cleric",
+  "druid":  "Druid",
+  "fighter": "Fighter" ,
+  "paladin":  "Paladin",
+  "ranger":  "Ranger",
+  "thief": "Thief",
+  "wizard": "Wizard"
+}

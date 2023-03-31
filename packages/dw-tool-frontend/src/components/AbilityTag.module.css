@@ -1,0 +1,21 @@
+.tag {
+  position: relative;
+
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+
+  font-weight: 600;
+
+  border-radius: 0.25rem;
+  border: 1px solid greenyellow;
+  background-color: #ADFF2F55;
+}
+
+.tag:hover .value {
+  display: inline;
+}
+
+.value {
+  /*display: none;*/
+}
+

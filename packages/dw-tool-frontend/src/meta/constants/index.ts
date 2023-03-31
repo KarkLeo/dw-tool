@@ -1,0 +1,5 @@
+export * from 'src/meta/constants/rases'
+export * from 'src/meta/constants/classes'
+export * from 'src/meta/constants/alignments'
+export * from 'src/meta/constants/abilities'
+export * from 'src/meta/constants/dices'

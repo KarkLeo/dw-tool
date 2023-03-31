@@ -1,0 +1,6 @@
+{
+  "name": "dw-tool-db",
+  "scripts": {
+    "start": "docker-compose up"
+  }
+}
