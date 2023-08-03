@@ -1,0 +1,43 @@
+{
+  "races": {
+    "elf": "Magic is as natural as breath to you. Detect Magic is a cantrip for you.",
+    "human": "Choose one cleric spell. You can cast it as if it was a wizard spell."
+  },
+  "alignments": {
+    "good": "Use magic to directly aid another.",
+    "neutral": "Discover something about a magical mystery.",
+    "evil": "Use magic to cause terror and fear."
+  },
+  "names": {
+    "elf": [
+      "Galadiir",
+      "Fenfaril",
+      "Lilliastre",
+      "Phirosalle",
+      "Enkirash",
+      "Halwyr"
+    ],
+    "human": [
+      "Avon",
+      "Morgan",
+      "Rath",
+      "Ysolde",
+      "Ovid",
+      "Vitus",
+      "Aldara",
+      "Xeno",
+      "Uri"
+    ]
+  },
+  "looks": [
+    ["Haunted Eyes", "Sharp Eyes", "Crazy Eyes"],
+    ["Styled Hair", "Wild Hair", "Pointed Hat"],
+    ["Worn Robes", "Stylish Robes", "Strange Robes"],
+    ["Pudgy Body", "Creepy Body", "Thin Body"]
+  ],
+  "bonds": [
+    "<input /> will play an important role in the events to come. I have foreseen it!",
+    "<input /> is keeping an important secret from me.",
+    "<input /> is woefully misinformed about the world; I will teach them all that I can."
+  ]
+}

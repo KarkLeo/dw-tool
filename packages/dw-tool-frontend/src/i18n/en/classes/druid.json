@@ -1,0 +1,60 @@
+{
+  "races": {
+    "elf": "The sap of the elder trees flows within you. In addition to any other attunements, the Great Forest is always considered your land.",
+    "human": "As your people learned to bind animals to field and farm, so too are you bound to them. You may always take the shape of any domesticated animal, in addition to your normal options.",
+    "halfling": "You sing the healing songs of spring and brook. When you make camp, you and your allies heal +1d6."
+  },
+  "alignments": {
+    "chaotic": "Destroy a symbol of civilization.",
+    "good": "Help something or someone grow.",
+    "neutral": "Eliminate an unnatural menace."
+  },
+  "names": {
+    "elf": [
+      "Hycorax",
+      "Ethanwe",
+      "Sinathel",
+      "Demanor",
+      "Menoliir",
+      "Mithralan",
+      "Taeros",
+      "Aegor"
+    ],
+    "halfling": [
+      "Tanner",
+      "Dunstan",
+      "Rose",
+      "Ivy",
+      "Robard",
+      "Mab",
+      "Thistle",
+      "Puck",
+      "Anne",
+      "Serah"
+    ],
+    "human" :[
+      "Elana",
+      "Obelis",
+      "Herran",
+      "Syla",
+      "Andanna",
+      "Siobhan",
+      "Aziz",
+      "Pelin",
+      "Sibel",
+      "Nils",
+      "Wei"
+    ]
+  },
+  "looks": [
+    ["Wise Eyes", "Wild Eyes", "Haunting Eyes"],
+    ["Furry Hood", "Messy Hair", "Braided Hair"],
+    ["Ceremonial Garb", "Practical Leathers", "Weathered Hides"]
+  ],
+  "bonds": [
+    "<input /> smells more like prey than a hunter.",
+    "The spirits spoke to me of a great danger that follows <input />.",
+    "I have showed <input /> a secret rite of the Land.",
+    "<input /> has tasted my blood and I theirs. We are bound by it."
+  ]
+}

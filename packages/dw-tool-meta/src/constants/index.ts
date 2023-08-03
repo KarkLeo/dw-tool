@@ -1,0 +1,5 @@
+export * from './rases'
+export * from './classes'
+export * from './alignments'
+export * from './abilities'
+export * from './dices'

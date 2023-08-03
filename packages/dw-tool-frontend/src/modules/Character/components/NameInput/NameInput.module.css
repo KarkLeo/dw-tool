@@ -1,0 +1,75 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.6rem
+}
+
+.root :global(.title) {
+  color: var(--c-grey);
+}
+
+.inputWrap {
+  width: 100%;
+  display: flex;
+  justify-content: stretch;
+}
+
+.input {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+
+  font-family: var(--ff-secondary);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--c-grey);
+
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid var(--c-orange);
+  outline: none;
+  transition: all 0.15s ease-in-out;
+}
+.input:hover,
+.input:focus {
+  color: var(--c-grey-light);
+
+  border-bottom: 2px solid var(--c-orange-light);
+}
+
+/*===== Radio =====*/
+
+.radioList {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.radioButton {
+  margin: 0;
+  padding: 0;
+
+  font-family: var(--ff-secondary);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--c-grey);
+
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.radioButton:hover {
+  color: var(--c-orange-light);
+}
+.radioButtonActive {
+  color: var(--c-yellow);
+}
+
+

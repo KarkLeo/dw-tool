@@ -4,10 +4,16 @@ import abilities from './en/abilities.json'
 import alignments from './en/alignments.json'
 import classes from './en/classes.json'
 import bard from './en/classes/bard.json'
+import cleric from './en/classes/cleric.json'
+import druid from './en/classes/druid.json'
+import fighter from './en/classes/fighter.json'
+import paladin from './en/classes/paladin.json'
+import ranger from './en/classes/ranger.json'
+import thief from './en/classes/thief.json'
+import wizard from './en/classes/wizard.json'
 import common from './en/common.json'
 import dices from './en/dices.json'
 import races from './en/races.json'
-import test from './en/test.json'
 
 export const resources = {
   en: {
@@ -15,8 +21,14 @@ export const resources = {
     alignments,
     classes,
     abilities,
-    test,
     bard,
+    cleric,
+    druid,
+    fighter,
+    paladin,
+    ranger,
+    thief,
+    wizard,
     common,
     dices,
   },
@@ -29,8 +41,14 @@ i18n.use(initReactI18next).init({
     'alignments',
     'classes',
     'abilities',
-    'test',
     'bard',
+    'cleric',
+    'druid',
+    'fighter',
+    'paladin',
+    'ranger',
+    'thief',
+    'wizard',
     'common',
     'dices',
   ],

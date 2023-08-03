@@ -1,0 +1,27 @@
+:root {
+  /*===== Colors =====*/
+  --c-brown: #3f2921;
+  --c-brown-50: rgba(63, 41, 33, 0.5);
+  --c-brown-light: #6e4b37;
+  --c-brown-dark: #2d1d18;
+
+  --c-orange: #a35122;
+  --c-orange-light: #b76330;
+  --c-orange-dark: #8d431e;
+
+  --c-yellow: #f0bc56;
+  --c-yellow-light: #f4d08a;
+  --c-yellow-dark: #d8a83f;
+
+  --c-grey: #d2c7bd;
+  --c-grey-light: #f4e4d4;
+  --c-grey-dark: #655044;
+
+  --c-dark: #2f271e;
+  --c-light: #efe8e4;
+
+  /*===== Fonts =====*/
+  --ff-primary: "carol-gothic",sans-serif;
+  --ff-secondary: "minion-pro-caption",serif;
+  --ff-secondary-2: "minion-pro-subhead",serif;
+}

@@ -1,20 +1,30 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
+import {
+  forwardRef,
+  HttpException,
+  HttpStatus,
+  Inject,
+  Injectable,
+} from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { In, Repository } from 'typeorm'
 import { CreateUserDto } from './dto/createUserDto'
 import { UserEntity } from './user.entity'
 import { JWT_SECRET } from '../config'
-import { sign } from 'jsonwebtoken'
+import { sign, verify } from 'jsonwebtoken'
 import { UserResponseInterface } from './types/userResponse.interface'
 import { compare } from 'bcrypt'
 import { LoginUserDto } from './dto/loginUserDto'
 import { UpdateUserDto } from './dto/updateUser.dto'
+import { MessageGateway } from '../message/message.gateway'
+import { UserIdDto } from './dto/userIdDto'
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
+    @Inject(forwardRef(() => MessageGateway))
+    private readonly messageGateway: MessageGateway,
   ) {}
 
   async create(user: CreateUserDto): Promise<UserEntity> {
@@ -70,6 +80,29 @@ export class UserService {
         id,
       },
     })
+  }
+
+  findByIds(ids: UserIdDto[]): Promise<UserEntity[]> {
+    return this.userRepository.findBy({
+      id: In(ids.map((i) => i.id)),
+    })
+  }
+
+  findByToken(token: string): Promise<UserEntity> {
+    const [_, hash] = token.split(' ')
+
+    const decoded = verify(hash, JWT_SECRET)
+    return this.findById(decoded.id)
+  }
+
+  findByText(text: string): Promise<UserEntity[]> {
+    return this.userRepository
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.characters', 'character')
+      .where('user.name ILIKE :text', { text: `%${text}%` })
+      .orWhere('user.email ILIKE :text', { text: `%${text}%` })
+      .orWhere('character.name ILIKE :text', { text: `%${text}%` })
+      .getMany()
   }
 
   generateJWT(user: UserEntity): string {

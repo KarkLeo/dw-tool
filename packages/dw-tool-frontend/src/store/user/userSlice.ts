@@ -4,13 +4,17 @@ import { authThunk } from 'src/store/user/actions/auth'
 import { loginThunk } from 'src/store/user/actions/login'
 import { meThunk } from 'src/store/user/actions/me'
 import { updateThunk } from 'src/store/user/actions/update'
-import { IUser } from 'src/store/user/types'
+import { IUserData } from 'dw-tool-meta'
 
 export interface UserState {
-  user: IUser | null
+  loading: boolean
+  loaded: boolean
+  user: IUserData | null
 }
 
 const initialState: UserState = {
+  loading: false,
+  loaded: false,
   user: null,
 }
 
@@ -18,7 +22,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser: (state, { payload }: PayloadAction<IUser>) => {
+    setUser: (state, { payload }: PayloadAction<IUserData>) => {
       state.user = payload
     },
     resetUser: (state) => {
@@ -34,8 +38,15 @@ export const userSlice = createSlice({
       state.user = payload
     })
 
+    builder.addCase(meThunk.pending, (state) => {
+      state.loading = true
+      state.loaded = false
+    })
+
     builder.addCase(meThunk.fulfilled, (state, { payload }) => {
       state.user = payload
+      state.loading = false
+      state.loaded = true
     })
 
     builder.addCase(updateThunk.fulfilled, (state, { payload }) => {

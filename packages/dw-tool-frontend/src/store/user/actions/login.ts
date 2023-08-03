@@ -2,9 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { userServices } from 'src/services/user'
 import { ILoginRequest } from 'src/services/user/types'
 import { setToken } from 'src/utils/auth'
-import { IUser } from '../types'
+import { IUserData } from 'dw-tool-meta'
 
-export const loginThunk = createAsyncThunk<IUser, ILoginRequest>(
+export const loginThunk = createAsyncThunk<IUserData, ILoginRequest>(
   'user/login',
   async (data, { rejectWithValue }) => {
     try {

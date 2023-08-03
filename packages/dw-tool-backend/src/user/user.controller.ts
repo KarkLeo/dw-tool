@@ -51,4 +51,11 @@ export class UserController {
     const updatedUser = await this.userService.update(userId, data)
     return this.userService.buildUserResponse(updatedUser)
   }
+
+  @Get('users/find/:text')
+  @UseGuards(AuthGuard)
+  async find(@Req() req): Promise<UserResponseInterface[]> {
+    const users = await this.userService.findByText(req.params.text)
+    return users.map((user) => this.userService.buildUserResponse(user))
+  }
 }

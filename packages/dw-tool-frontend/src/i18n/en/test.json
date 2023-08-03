@@ -1,4 +1,0 @@
-{
-  "test": "<label>Test</label> <spec>string</spec> $t(races:human) {{pr.a}} <ref type='races' to='elf'/> <ref type='alignments' to='good'/> ",
-  "arr": ["qqqqq", "wwww", "eeee"]
-}

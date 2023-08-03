@@ -1,0 +1,69 @@
+{
+  "races": {
+    "dwarf": "When you share a drink with someone, you may parley with them using CON instead of CHA.",
+    "elf": "Choose one weapon—you can always treat weapons of that type as if they had the precise tag.",
+    "halfling": "When you defy danger and use your small size to your advantage, take +1.",
+    "human": "Once per battle you may reroll a single damage roll (yours or someone else’s)."
+  },
+  "alignments": {
+    "good": "Defend those weaker than you.",
+    "neutral": "Defeat a worthy opponent.",
+    "evil": "Kill a defenseless or surrendered enemy."
+  },
+  "names": {
+    "dwarf": [
+      "Ozruk",
+      "Surtur",
+      "Brunhilda",
+      "Annika",
+      "Janos",
+      "Greta",
+      "Dim",
+      "Rundrig",
+      "Jarl",
+      "Xotoq"
+    ],
+    "elf": [
+      "Elohiir",
+      "Sharaseth",
+      "Hasrith",
+      "Shevaral",
+      "Cadeus",
+      "Eldar",
+      "Kithracet",
+      "Thelian"
+    ],
+    "halfling": [
+      "Finnegan",
+      "Olive",
+      "Randolph",
+      "Bartleby",
+      "Aubrey",
+      "Baldwin",
+      "Becca"
+    ],
+    "human": [
+      "Hawke",
+      "Rudiger",
+      "Gregor",
+      "Brianne",
+      "Walton",
+      "Castor",
+      "Shanna",
+      "Ajax",
+      "Hob"
+    ]
+  },
+  "looks": [
+    ["Hard Eyes", "Dead Eyes", "Eager Eyes"],
+    ["Wild Hair", "Shorn Hair", "Battered Helm"],
+    ["Calloused Skin", "Tanned Skin", "Scarred Skin"],
+    ["Built Body", "Lithe Body", "Ravaged Body"]
+  ],
+  "bonds": [
+    "<input /> owes me their life, whether they admit it or not.",
+    "I have sworn to protect <input />.",
+    "I worry about the ability of <input /> to survive in the dungeon.",
+    "<input /> is soft, but I will make them hard like me."
+  ]
+}

@@ -1,5 +1,17 @@
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm'
 import { hash } from 'bcrypt'
+import { CharacterEntity } from '../character/character.entity'
+import { ConnectionEntity } from '../message/connection/connection.entity'
+import { NotificationEntity } from '../message/notification/notification.entity'
+import { GameEntity } from '../game/game.entity'
+import { PlayerEntity } from '../game/player/player.entity'
 
 @Entity({ name: 'users' })
 export class UserEntity {
@@ -19,4 +31,19 @@ export class UserEntity {
   async hashPassword() {
     this.password = await hash(this.password, 10)
   }
+
+  @OneToMany(() => CharacterEntity, (character) => character.user)
+  characters: CharacterEntity[]
+
+  @OneToMany(() => ConnectionEntity, (connection) => connection.user)
+  connections: ConnectionEntity[]
+
+  @OneToMany(() => NotificationEntity, (notification) => notification.to)
+  notificationsTo: NotificationEntity[]
+
+  @OneToMany(() => NotificationEntity, (notification) => notification.from)
+  notificationsFrom: NotificationEntity[]
+
+  @OneToMany(() => PlayerEntity, (player) => player.user)
+  players: GameEntity[]
 }

@@ -1,0 +1,41 @@
+.root {
+  --p: 2rem;
+
+  position: relative;
+
+  padding: var(--p);
+  box-sizing: border-box;
+
+  border: 1px solid var(--c-orange-light);
+  border-radius: 1rem;
+}
+
+.root::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+
+  background: linear-gradient(145deg, var(--c-brown) 0%, var(--c-brown-light) 100%);
+  border-radius: 1rem;
+  opacity: .7;
+  box-shadow:
+      inset 0 0 5rem 0 var(--c-dark),
+      0 0.5rem 1rem 0 var(--c-dark);
+}
+
+.root::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -2;
+
+  border-radius: 1rem;
+  backdrop-filter: blur(8px) brightness(0.8);
+}

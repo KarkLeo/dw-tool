@@ -1,10 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
+import redirectReducer from './redirect/redirectSlice'
 import userReducer from './user/userSlice'
+import newCharacterReducer from './newCharacter/newCharacterSlice'
+import listOfCharactersReducer from './listOfCharacters/listOfCharactersSlice'
+import currentCharacterReducer from './currentCharacter/currentCharacterSlice'
 
 export const store = configureStore({
   reducer: {
+    redirect: redirectReducer,
     user: userReducer,
+    newCharacter: newCharacterReducer,
+    listOfCharacters: listOfCharactersReducer,
+    currentCharacter: currentCharacterReducer,
   },
 })
 

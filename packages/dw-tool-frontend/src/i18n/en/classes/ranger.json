@@ -1,0 +1,42 @@
+{
+  "races": {
+    "elf": "When you undertake a perilous journey through wilderness whatever job you take you succeed as if you rolled a 10+.",
+    "human": "When you make camp in a dungeon or city, you don’t need to consume a ration."
+  },
+  "alignments": {
+    "chaotic": "Free someone from literal or figurative bonds.",
+    "good": "Endanger yourself to combat an unnatural threat.",
+    "neutral": "Help an animal or spirit of the wild."
+  },
+  "names": {
+    "elf": [
+      "Throndir",
+      "Elrosine",
+      "Aranwe",
+      "Celion",
+      "Dambrath",
+      "Lanethe"
+    ],
+    "human": [
+      "Jonah",
+      "Halek",
+      "Brandon",
+      "Emory",
+      "Shrike",
+      "Nora",
+      "Diana"
+    ]
+  },
+  "looks": [
+    ["Wild Eyes", "Sharp Eyes", "Animal Eyes"],
+    ["Hooded Head", "Wild Hair", "Bald"],
+    ["Cape", "Camouflage", "Traveling Clothes"],
+    ["Lithe Body", "Wild Body", "Sharp Body"]
+  ],
+  "bonds": [
+    "I have guided <input /> before and they owe me for it.",
+    "<input /> is a friend of nature, so I will be their friend as well.",
+    "<input /> has no respect for nature, so I have no respect for them.",
+    "<input /> does not understand life in the wild, so I will teach them."
+  ]
+}

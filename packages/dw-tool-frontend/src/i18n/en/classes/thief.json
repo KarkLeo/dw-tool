@@ -1,0 +1,47 @@
+{
+  "races": {
+    "halfling": "When you attack with a ranged weapon, deal +2 damage.",
+    "human": "You are a professional. When you spout lore or discern realities about criminal activities, take +1."
+  },
+  "alignments": {
+    "chaotic": "Leap into danger without a plan.",
+    "neutral": "Avoid detection or infiltrate a location.",
+    "evil": "Shift danger or blame from yourself to someone else."
+  },
+  "names": {
+    "halfling": [
+      "Felix",
+      "Rook",
+      "Mouse",
+      "Sketch",
+      "Trixie",
+      "Robin",
+      "Omar",
+      "Brynn",
+      "Bug"
+    ],
+    "human": [
+      "Sparrow",
+      "Shank",
+      "Jack",
+      "Marlow",
+      "Dodge",
+      "Rat",
+      "Pox",
+      "Humble",
+      "Farley"
+    ]
+  },
+  "looks": [
+    ["Shifty Eyes", "Criminal Eyes"],
+    ["Hooded Head", "Messy Hair", "Cropped Hair"],
+    ["Dark Clothes", "Fancy Clothes", "Common Clothes"],
+    ["Lithe Body", "Knobby Body", "Flabby Body"]
+  ],
+  "bonds": [
+    "I stole something from <input />.",
+    "<input /> has my back when things go wrong.",
+    "<input /> knows incriminating details about me.",
+    "<input /> and I have a con running."
+  ]
+}

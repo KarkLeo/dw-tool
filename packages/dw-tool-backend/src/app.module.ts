@@ -7,6 +7,7 @@ import { dataSourceOptions } from './ormconfig'
 import { UserModule } from './user/user.module'
 import { AuthMiddleware } from './user/middlewares/auth.middleware'
 import { CharacterModule } from './character/character.module'
+import { MessageModule } from './message/message.module'
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { CharacterModule } from './character/character.module'
     ClassModule,
     UserModule,
     CharacterModule,
+    MessageModule,
   ],
   controllers: [AppController],
   providers: [AppService],

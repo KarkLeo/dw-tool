@@ -1,0 +1,49 @@
+{
+  "races": {
+    "dwarf": "You are one with stone. When you commune you are also granted a special version of Words of the Unspeaking as a rote which only works on stone.",
+    "human": "Your faith is diverse. Choose one wizard spell. You can cast and be granted that spell as if it was a cleric spell."
+  },
+  "alignments": {
+    "good": "Endanger yourself to heal another.",
+    "lawful": "Endanger yourself following the precepts of your church or god.",
+    "evil": "Harm another to prove the superiority of your church or god."
+  },
+  "names": {
+    "dwarf": [
+      "Durga",
+      "Aelfar",
+      "Gerda",
+      "Rurgosh",
+      "Bjorn",
+      "Drummond",
+      "Helga",
+      "Siggrun",
+      "Freya"
+    ],
+    "human": [
+      "Wesley",
+      "Brinton",
+      "Jon",
+      "Sara",
+      "Hawthorn",
+      "Elise",
+      "Clarke",
+      "Lenore",
+      "Piotr",
+      "Dahlia",
+      "Carmine"
+    ]
+  },
+  "looks": [
+    ["Kind Eyes", "Sharp Eyes", "Sad Eyes"],
+    ["Tonsure", "Strange Hair", "Bald"],
+    ["Flowing Robes", "Habit", "Common Garb"],
+    ["Thin Body", "Knobby Body", "Flabby Body"]
+  ],
+  "bonds": [
+    "<input /> has insulted my deity; I do not trust them.",
+    "<input /> is a good and faithful person; I trust them implicitly.",
+    "<input /> is in constant danger, I will keep them safe.",
+    "I am working on converting <input /> to my faith."
+  ]
+}

@@ -1,0 +1,29 @@
+.root {
+  --p: 1.6rem;
+
+  position: relative;
+
+  padding: var(--p);
+  box-sizing: border-box;
+
+  background: linear-gradient(145deg, var(--c-grey) 0%, var(--c-grey-light) 100%);
+  border: 1px solid var(--c-grey-dark);
+  border-radius: .5rem;
+  box-shadow:
+      inset 0 0 4rem 0 var(--c-dark),
+      0 0.5rem 1rem 0 var(--c-dark);
+}
+
+.root::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  z-index: 1;
+
+  border: 1px solid var(--c-grey-dark);
+  border-radius: calc(.5rem - 2px);
+  pointer-events: none;
+}

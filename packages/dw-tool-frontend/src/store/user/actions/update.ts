@@ -2,9 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { userServices } from 'src/services/user'
 import { IUserDataRequest } from 'src/services/user/types'
 import { setToken } from 'src/utils/auth'
-import { IUser } from '../types'
+import { IUserData } from 'dw-tool-meta'
 
-export const updateThunk = createAsyncThunk<IUser, IUserDataRequest>(
+export const updateThunk = createAsyncThunk<IUserData, IUserDataRequest>(
   'user/update',
   async (data, { rejectWithValue }) => {
     try {

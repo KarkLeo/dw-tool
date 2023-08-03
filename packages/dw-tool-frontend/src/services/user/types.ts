@@ -1,7 +1,7 @@
-import { IUser } from 'src/store/user/types'
+import { IUserData } from 'dw-tool-meta'
 
 export interface IUserResponse {
-  user: IUser & {
+  user: IUserData & {
     token: string
   }
 }
