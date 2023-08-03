@@ -7,6 +7,7 @@
   "scripts": {
     "db": "npm run start --workspace=dw-tool-db",
     "backend": "npm run start:dev --workspace=dw-tool-backend",
-    "frontend": "npm run start --workspace=dw-tool-frontend"
+    "frontend": "npm run start --workspace=dw-tool-frontend",
+    "meta": "npm run build --workspace=dw-tool-meta"
   }
 }
