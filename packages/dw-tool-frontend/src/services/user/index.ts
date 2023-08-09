@@ -11,4 +11,5 @@ export const userServices = {
   me: () => instance.get<IUserResponse>('me/'),
   update: (data: IUserDataRequest) =>
     instance.patch<IUserResponse>('me/', data),
+  search: (text: string) => instance.get<IUserResponse[]>(`users/find/${text}`),
 }
