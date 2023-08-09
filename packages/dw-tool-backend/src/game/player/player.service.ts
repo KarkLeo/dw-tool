@@ -12,7 +12,7 @@ import { GameEntity } from '../game.entity'
 export class PlayerService {
   constructor(
     @InjectRepository(PlayerEntity)
-    private readonly gameRepository: Repository<PlayerEntity>,
+    private readonly playerRepository: Repository<PlayerEntity>,
     @Inject(forwardRef(() => UserService))
     private readonly userService: UserService,
   ) {}
@@ -22,27 +22,22 @@ export class PlayerService {
     usersId: UserIdDto[],
   ): Promise<PlayerEntity[]> {
     const users = await this.userService.findByIds(usersId)
-    const players = users.map((user) => {
+    const players = [
+      ...users.filter((user) => user.id !== currentUser.id),
+      currentUser,
+    ].map((user) => {
       const player = new PlayerEntity()
       player.user = user
-      player.status = PlayerStatusesEnum.PENDING
+      player.status =
+        user.id === currentUser.id
+          ? PlayerStatusesEnum.ACCEPTED
+          : PlayerStatusesEnum.PENDING
       player.isOwner = user.id === currentUser.id
       player.isGM = user.id === currentUser.id
 
       return player
     })
-    return await this.gameRepository.save(players)
-  }
 
-  async attachPlayersToGame(
-    players: PlayerEntity[],
-    game: GameEntity,
-  ): Promise<PlayerEntity[]> {
-    players.forEach((player) => {
-      player.game = game
-    })
-    //todo send invite to users
-
-    return await this.gameRepository.save(players)
+    return await this.playerRepository.save(players)
   }
 }

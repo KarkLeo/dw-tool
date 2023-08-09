@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common'
 import { GameService } from './game.service'
 import { AuthGuard } from '../user/guards/auth.guard'
 import { GameEntity } from './game.entity'
@@ -10,6 +10,12 @@ import { UserEntity } from '../user/user.entity'
 export class GameController {
   constructor(private readonly gameService: GameService) {}
 
+  @Get('/')
+  @UseGuards(AuthGuard)
+  async findAll(@User() currentUser: UserEntity): Promise<GameEntity[]> {
+    return this.gameService.findAll(currentUser)
+  }
+
   @Post('/create')
   @UseGuards(AuthGuard)
   async create(
@@ -17,5 +23,11 @@ export class GameController {
     @User() currentUser: UserEntity,
   ): Promise<GameEntity> {
     return this.gameService.create(currentUser, createGameDto)
+  }
+
+  @Get('/:id')
+  @UseGuards(AuthGuard)
+  async findOne(@Param('id') gameId: number): Promise<GameEntity> {
+    return this.gameService.findOne(gameId)
   }
 }

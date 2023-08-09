@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  ManyToMany,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm'
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { UserEntity } from '../../user/user.entity'
 import { CharacterEntity } from '../../character/character.entity'
 import { PlayerStatusesEnum } from './types/playerStatusesEnum'

@@ -23,11 +23,10 @@ export class GameService {
 
   async findAll(currentUser: UserEntity): Promise<GameEntity[]> {
     return await this.gameRepository
-      .createQueryBuilder('game')
-      .leftJoinAndSelect('game.users', 'users')
-      .leftJoinAndSelect('game.characters', 'characters')
-      .where('users.id = :id', { id: currentUser.id })
-      .orWhere('owner.id = :id', { id: currentUser.id })
+      .createQueryBuilder('games')
+      .leftJoinAndSelect('games.players', 'players')
+      .leftJoinAndSelect('players.user', 'users')
+      .where('players.user.id = :id', { id: currentUser.id })
       .getMany()
   }
 
@@ -45,8 +44,16 @@ export class GameService {
     game.description = createGameDto.description
     game.players = players
 
-    const savedGame = await this.gameRepository.save(game)
-    await this.playerService.attachPlayersToGame(players, savedGame)
-    return game
+    return await this.gameRepository.save(game)
+  }
+
+  async findOne(id: number): Promise<GameEntity> {
+    return await this.gameRepository
+      .createQueryBuilder('games')
+      .leftJoinAndSelect('games.players', 'players')
+      .leftJoinAndSelect('players.user', 'users')
+      .leftJoinAndSelect('players.character', 'characters')
+      .where('games.id = :id', { id })
+      .getOne()
   }
 }
