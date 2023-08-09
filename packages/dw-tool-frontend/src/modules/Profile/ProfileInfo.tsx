@@ -5,6 +5,7 @@ import { PSimple } from 'src/common/Texts/Simple'
 import { useAppDispatch } from 'src/store/root'
 import { logoutThunk } from 'src/store/user/actions/logout'
 import { userDataSelector } from 'src/store/user/selectors'
+import { Menu } from '../../common/Menu/Menu'
 
 export const ProfileInfo = () => {
   const dispatch = useAppDispatch()
@@ -21,7 +22,13 @@ export const ProfileInfo = () => {
         <PSimple>
           {user?.name} ({user?.email})
         </PSimple>
-        <button onClick={handleLogout}>Logout</button>
+        <Menu />
+        <button
+          className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700'
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
       </div>
     </FrameWindow1>
   )

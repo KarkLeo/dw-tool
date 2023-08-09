@@ -4,6 +4,7 @@ import { characterServices } from 'src/services/character'
 import { newCharacterSelector } from '../selectors'
 import { RootState } from '../../root'
 import { setRedirect } from '../../redirect/redirectSlice'
+import { PATHS } from '../../../routes/config'
 
 export const saveNewCharacterThunk = createAsyncThunk<
   any,
@@ -16,7 +17,7 @@ export const saveNewCharacterThunk = createAsyncThunk<
       const data = newCharacterSelector(getState())
       const res = await characterServices.create(data)
 
-      dispatch(setRedirect('/'))
+      dispatch(setRedirect(PATHS.APP))
 
       return res.data
     } catch (error) {

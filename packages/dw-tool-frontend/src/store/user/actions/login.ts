@@ -1,12 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { userServices } from 'src/services/user'
 import { ILoginRequest } from 'src/services/user/types'
-import { setToken } from 'src/utils/auth'
+import { removeToken, setToken } from 'src/utils/auth'
 import { IUserData } from 'dw-tool-meta'
+import { resetUser } from '../userSlice'
 
 export const loginThunk = createAsyncThunk<IUserData, ILoginRequest>(
   'user/login',
-  async (data, { rejectWithValue }) => {
+  async (data, { rejectWithValue, dispatch }) => {
     try {
       const {
         data: { user },
@@ -20,6 +21,8 @@ export const loginThunk = createAsyncThunk<IUserData, ILoginRequest>(
         name: user.name,
       }
     } catch (error) {
+      dispatch(resetUser)
+      removeToken()
       return rejectWithValue(error)
     }
   }

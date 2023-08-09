@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --c-light: #c7ba9b;
   --c-dark: #e17927;
