@@ -5,6 +5,7 @@ import { ConnectionEntity } from './connection/connection.entity'
 import { ConnectionService } from './connection/connection.service'
 import { UserModule } from '../user/user.module'
 import { NotificationEntity } from './notification/notification.entity'
+import { NotificationService } from './notification/notification.service'
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import { NotificationEntity } from './notification/notification.entity'
     TypeOrmModule.forFeature([NotificationEntity]),
     forwardRef(() => UserModule),
   ],
-  providers: [ConnectionService, NotificationEntity, MessageGateway],
+  providers: [ConnectionService, NotificationService, MessageGateway],
   exports: [MessageGateway],
 })
 export class MessageModule {}
