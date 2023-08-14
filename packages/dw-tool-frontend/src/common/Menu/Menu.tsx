@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { PATHS } from '../../routes/config'
+import Notifications from '../NotificationBar'
 
 const tStyles = {
   container: 'flex space-x-4 bg-blue-500 text-white p-4',
@@ -24,6 +25,7 @@ export const Menu = () => {
           Create game
         </Link>
       </li>
+      <Notifications />
     </nav>
   )
 }
