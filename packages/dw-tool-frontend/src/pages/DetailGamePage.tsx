@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { userDataSelector } from '../store/user/selectors'
 import { characterServices } from '../services/character'
 import { ICharacterListData } from 'dw-tool-meta'
+import { GameStatusesEnum, PlayerStatusesEnum } from '../services/games/types'
 
 interface IGameResponse {
   id: number
@@ -51,10 +52,9 @@ export const DetailGamePage = () => {
 
   const myPlayer = useMemo(() => {
     const player = game?.players.find((player) => player.user.id === user?.id)
-    if (player && selectedCharacter) player.character = selectedCharacter
 
     return player
-  }, [game, user, selectedCharacter])
+  }, [game, user])
 
   // ===== Dropdown =====
 
@@ -90,6 +90,84 @@ export const DetailGamePage = () => {
 
   //todo create for different status
 
+  const acceptPlayer = async () => {
+    if (myPlayer) {
+      const res = await gamesServices.updatePlayerStatus({
+        playerId: myPlayer.id,
+        status: PlayerStatusesEnum.ACCEPTED,
+      })
+      setGame(res.data as IGameResponse)
+    }
+  }
+
+  const rejectPlayer = async () => {
+    if (myPlayer) {
+      const res = await gamesServices.updatePlayerStatus({
+        playerId: myPlayer.id,
+        status: PlayerStatusesEnum.REJECTED,
+      })
+      setGame(res.data as IGameResponse)
+    }
+  }
+
+  const leavePlayer = async () => {
+    if (myPlayer) {
+      const res = await gamesServices.updatePlayerStatus({
+        playerId: myPlayer.id,
+        status: PlayerStatusesEnum.LEFT,
+      })
+      setGame(res.data as IGameResponse)
+    }
+  }
+
+  const kickPlayer = async (playerId: number) => {
+    const res = await gamesServices.updatePlayerStatus({
+      playerId: playerId,
+      status: PlayerStatusesEnum.KICKED,
+    })
+    setGame(res.data as IGameResponse)
+  }
+
+  const selectCharacter = async () => {
+    if (myPlayer && selectedCharacter) {
+      const res = await gamesServices.addPlayerCharacter({
+        playerId: myPlayer.id,
+        characterId: selectedCharacter.id,
+      })
+      setGame(res.data as IGameResponse)
+    }
+  }
+
+  const playGame = async () => {
+    if (game) {
+      const res = await gamesServices.updateGameStatus({
+        gameId: game.id,
+        status: GameStatusesEnum.IN_PROGRESS,
+      })
+      setGame(res.data as IGameResponse)
+    }
+  }
+
+  const pauseGame = async () => {
+    if (game) {
+      const res = await gamesServices.updateGameStatus({
+        gameId: game.id,
+        status: GameStatusesEnum.PAUSED,
+      })
+      setGame(res.data as IGameResponse)
+    }
+  }
+
+  const finishGame = async () => {
+    if (game) {
+      const res = await gamesServices.updateGameStatus({
+        gameId: game.id,
+        status: GameStatusesEnum.FINISHED,
+      })
+      setGame(res.data as IGameResponse)
+    }
+  }
+
   return (
     <div className='font-sans'>
       <Menu />
@@ -103,6 +181,38 @@ export const DetailGamePage = () => {
           <h2 className='text-xl font-bold mb-2'>{game.name}</h2>
           <p className='text-gray-700 mb-2'>{game.description}</p>
           <p className='text-green-500 mb-4'>{game.status}</p>
+          {myPlayer?.isOwner && (
+            <div className='flex space-x-2 my-4'>
+              {(game.status === GameStatusesEnum.READY ||
+                game.status === GameStatusesEnum.PAUSED) && (
+                <button
+                  className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                  onClick={playGame}
+                >
+                  PLAY
+                </button>
+              )}
+              {game.status === GameStatusesEnum.IN_PROGRESS && (
+                <button
+                  className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                  onClick={pauseGame}
+                >
+                  PAUSE
+                </button>
+              )}
+              {(game.status === GameStatusesEnum.READY ||
+                game.status === GameStatusesEnum.PAUSED ||
+                game.status === GameStatusesEnum.IN_PROGRESS) && (
+                <button
+                  className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                  onClick={finishGame}
+                >
+                  FINISH
+                </button>
+              )}
+            </div>
+          )}
+
           <h3 className='text-lg font-bold mb-2'>Players:</h3>
           <hr />
           {myPlayer && (
@@ -112,55 +222,99 @@ export const DetailGamePage = () => {
               </h4>
               <p>{myPlayer.user.email}</p>
               <p>Status: {myPlayer.status}</p>
-              {!myPlayer.isOwner && (
-                <p>
-                  Character:
-                  <div
-                    className='relative inline-block text-left'
-                    ref={container}
-                  >
-                    <div>
+              <div className='flex space-x-2 my-4'>
+                {myPlayer.status === PlayerStatusesEnum.PENDING &&
+                  !myPlayer.isOwner && (
+                    <>
                       <button
-                        type='button'
-                        onClick={() => setIsOpen(!isOpen)}
-                        className='inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500'
+                        className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                        onClick={acceptPlayer}
                       >
-                        {myPlayer.character
-                          ? `${myPlayer.character.name} (${myPlayer.character.class} - ${myPlayer.character.race})`
-                          : 'Select Character'}
+                        Accept
                       </button>
-                    </div>
+                      <button
+                        className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                        onClick={rejectPlayer}
+                      >
+                        Decline
+                      </button>
+                    </>
+                  )}
+                {myPlayer.status === PlayerStatusesEnum.ACCEPTED &&
+                  !myPlayer.isOwner && (
+                    <button
+                      className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                      onClick={leavePlayer}
+                    >
+                      Leave
+                    </button>
+                  )}
+              </div>
 
-                    {isOpen && (
-                      <div className='origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5'>
-                        <div
-                          className='py-1'
-                          role='menu'
-                          aria-orientation='vertical'
-                          aria-labelledby='options-menu'
-                        >
-                          {characters.map((character) => (
+              {!myPlayer.isOwner &&
+                myPlayer.status === PlayerStatusesEnum.ACCEPTED && (
+                  <p>
+                    Character:
+                    <div
+                      className='relative inline-block text-left'
+                      ref={container}
+                    >
+                      <div>
+                        {myPlayer.character ? (
+                          <span>
+                            {`${myPlayer.character.name} (${myPlayer.character.class} - ${myPlayer.character.race})`}
+                          </span>
+                        ) : (
+                          <>
                             <button
-                              key={character.id}
-                              onClick={() => {
-                                setSelectedCharacter(character)
-                                setIsOpen(false)
-                              }}
-                              disabled={
-                                myPlayer?.character?.id === character.id
-                              }
-                              className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed'
+                              type='button'
+                              onClick={() => setIsOpen(!isOpen)}
+                              className='inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500'
                             >
-                              {character.name} ({character.class} -{' '}
-                              {character.race})
+                              {selectedCharacter
+                                ? `${selectedCharacter.name} (${selectedCharacter.class} - ${selectedCharacter.race})`
+                                : 'Select Character'}
                             </button>
-                          ))}
-                        </div>
+                            <button
+                              onClick={selectCharacter}
+                              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                            >
+                              SAVE
+                            </button>
+                          </>
+                        )}
                       </div>
-                    )}
-                  </div>
-                </p>
-              )}
+
+                      {isOpen && (
+                        <div className='origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5'>
+                          <div
+                            className='py-1'
+                            role='menu'
+                            aria-orientation='vertical'
+                            aria-labelledby='options-menu'
+                          >
+                            {characters.map((character) => (
+                              <button
+                                key={character.id}
+                                onClick={() => {
+                                  setSelectedCharacter(character)
+                                  setIsOpen(false)
+                                }}
+                                disabled={
+                                  myPlayer?.character?.id === character.id
+                                }
+                                className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed'
+                              >
+                                {character.name} ({character.class} -{' '}
+                                {character.race})
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </p>
+                )}
             </div>
           )}
           <hr />
@@ -180,26 +334,21 @@ export const DetailGamePage = () => {
                         {player.character.class}, {player.character.race})
                       </p>
                     )}
-                    {myPlayer?.isOwner && (
-                      <button
-                        className='text-blue-500 hover:text-blue-700 focus:outline-none focus:underline'
-                        disabled
-                      >
-                        Remove
-                      </button>
-                    )}
+                    {myPlayer?.isOwner &&
+                      player.status !== PlayerStatusesEnum.LEFT &&
+                      player.status !== PlayerStatusesEnum.REJECTED &&
+                      player.status !== PlayerStatusesEnum.KICKED && (
+                        <button
+                          className='text-blue-500 hover:text-blue-700 focus:outline-none focus:underline'
+                          onClick={() => kickPlayer(player.id)}
+                        >
+                          Kick
+                        </button>
+                      )}
                   </li>
                 )
             )}
           </ul>
-          {myPlayer?.isOwner && (
-            <button
-              className='text-blue-500 hover:text-blue-700 focus:outline-none focus:underline'
-              disabled
-            >
-              Add player
-            </button>
-          )}
         </div>
       )}
     </div>

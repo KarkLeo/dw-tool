@@ -14,7 +14,6 @@ export const GamePage = () => {
   const [games, setGames] = useState<IGameResponse[]>([])
 
   useEffect(() => {
-    console.log('GamePage')
     const fetchGames = async () => {
       const res = await gamesServices.findAll()
       setGames(res.data as IGameResponse[])

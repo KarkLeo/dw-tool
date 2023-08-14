@@ -4,8 +4,11 @@ import { Background } from '../common/Background/Background'
 import { Paper } from '../common/Paper/Paper'
 import { Link } from 'react-router-dom'
 import { CharacterList } from '../modules/Character/components/CharacterList/CharacterList'
+import { useTestSocket } from '../services/notificationSocket/useTestSocket'
 
 export const AppPage = () => {
+  useTestSocket()
+
   return (
     <Background>
       <ProfileInfo />
