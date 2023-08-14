@@ -5,7 +5,7 @@ import userReducer from './user/userSlice'
 import newCharacterReducer from './newCharacter/newCharacterSlice'
 import listOfCharactersReducer from './listOfCharacters/listOfCharactersSlice'
 import currentCharacterReducer from './currentCharacter/currentCharacterSlice'
-
+import notificationReducer from './notification/notificationSlice'
 export const store = configureStore({
   reducer: {
     redirect: redirectReducer,
@@ -13,6 +13,7 @@ export const store = configureStore({
     newCharacter: newCharacterReducer,
     listOfCharacters: listOfCharactersReducer,
     currentCharacter: currentCharacterReducer,
+    notification: notificationReducer,
   },
 })
 
