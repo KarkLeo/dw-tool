@@ -88,7 +88,10 @@ export class UserService {
     })
   }
 
-  findByToken(token: string): Promise<UserEntity> {
+  findByToken(token: string): Promise<UserEntity | null> {
+    if (!token) {
+      return null
+    }
     const [_, hash] = token.split(' ')
 
     const decoded = verify(hash, JWT_SECRET)
