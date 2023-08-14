@@ -4,8 +4,10 @@ import {
   RemoveTokenInterceptor,
 } from 'src/services/interceptors/auth'
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000/'
+
 const instance = axios.create({
-  baseURL: 'http://localhost:4000/',
+  baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json;charset=utf-8',
     'Access-Control-Allow-Origin': '*',
