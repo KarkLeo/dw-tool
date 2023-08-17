@@ -11,6 +11,6 @@
     "backend:prod": "npm run start:prod --workspace=dw-tool-backend",
     "frontend": "npm run start --workspace=dw-tool-frontend",
     "meta": "npm run build:watch --workspace=dw-tool-meta",
-    "meta:build": "npm run build:watch --workspace=dw-tool-meta"
+    "meta:build": "npm run build --workspace=dw-tool-meta"
   }
 }
