@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc --watch"
+    "build": "tsc",
+    "build:watch": "tsc --watch"
   },
   "devDependencies": {
     "prettier": "^2.8.7",
