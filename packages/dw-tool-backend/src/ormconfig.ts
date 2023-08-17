@@ -1,17 +1,16 @@
-import { DataSource, DataSourceOptions } from 'typeorm'
+import { ConfigService } from '@nestjs/config'
+import { TypeOrmModuleOptions } from '@nestjs/typeorm'
 
-export const dataSourceOptions: DataSourceOptions = {
+export const createOrmConfig = (
+  configService: ConfigService,
+): TypeOrmModuleOptions => ({
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'dw_tool',
-  password: 'dw_tool',
-  database: 'dw_tool',
+  host: configService.get('DB_HOST'),
+  port: +configService.get<number>('DB_PORT'),
+  username: configService.get('DB_USER'),
+  password: configService.get('DB_PASSWORD'),
+  database: configService.get('DB_NAME'),
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
   migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
   synchronize: false,
-}
-
-const dataSource = new DataSource(dataSourceOptions)
-
-export default dataSource
+})
