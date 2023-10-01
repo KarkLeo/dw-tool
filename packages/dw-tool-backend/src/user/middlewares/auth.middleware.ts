@@ -12,7 +12,6 @@ export class AuthMiddleware implements NestMiddleware {
       next()
       return
     }
-
     try {
       const user = await this.userService.findByToken(req.headers.authorization)
       req.user = user

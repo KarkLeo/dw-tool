@@ -1,0 +1,21 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { YourService } from './your.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+describe('YourService', () => {
+  let service: YourService;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      imports: [
+        TypeOrmModule.forRoot(ormconfig.test),
+        TypeOrmModule.forFeature([YourEntity]),
+      ],
+      providers: [YourService],
+    }).compile();
+
+    service = module.get<YourService>(YourService);
+  });
+
+  // your tests here
+});

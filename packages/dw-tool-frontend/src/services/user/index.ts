@@ -7,7 +7,8 @@ import {
 
 export const userServices = {
   login: (data: ILoginRequest) => instance.post<IUserResponse>('login/', data),
-  auth: (data: IUserDataRequest) => instance.post<IUserResponse>('auth/', data),
+  auth: (data: IUserDataRequest) =>
+    instance.post<IUserResponse>('register/', data),
   me: () => instance.get<IUserResponse>('me/'),
   update: (data: IUserDataRequest) =>
     instance.patch<IUserResponse>('me/', data),
