@@ -1,9 +1,11 @@
 import { INestApplication } from '@nestjs/common'
 import * as request from 'supertest'
+
 import { creatTestApp } from './test-utils/creat-test-app'
 
 describe('AppModule', () => {
   let app: INestApplication
+
   beforeAll(async () => {
     app = await creatTestApp()
   })

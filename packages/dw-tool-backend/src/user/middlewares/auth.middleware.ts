@@ -13,8 +13,7 @@ export class AuthMiddleware implements NestMiddleware {
       return
     }
     try {
-      const user = await this.userService.findByToken(req.headers.authorization)
-      req.user = user
+      req.user = await this.userService.findByToken(req.headers.authorization)
       next()
     } catch (error) {
       req.user = null

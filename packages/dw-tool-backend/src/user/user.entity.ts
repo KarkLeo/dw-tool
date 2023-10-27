@@ -1,16 +1,18 @@
 import {
   BeforeInsert,
+  BeforeUpdate,
   Column,
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm'
-import { hash } from 'bcrypt'
+import { hash, getRounds } from 'bcrypt'
 import { CharacterEntity } from '../character/character.entity'
 import { ConnectionEntity } from '../message/connection/connection.entity'
 import { NotificationEntity } from '../message/notification/notification.entity'
 import { GameEntity } from '../game/game.entity'
 import { PlayerEntity } from '../game/player/player.entity'
+import { isHash } from './utils/isHash'
 
 @Entity({ name: 'users' })
 export class UserEntity {
@@ -27,8 +29,11 @@ export class UserEntity {
   password: string
 
   @BeforeInsert()
+  @BeforeUpdate()
   async hashPassword() {
-    this.password = await hash(this.password, 10)
+    if (this.password && !isHash(this.password)) {
+      this.password = await hash(this.password, 10)
+    }
   }
 
   @OneToMany(() => CharacterEntity, (character) => character.user)

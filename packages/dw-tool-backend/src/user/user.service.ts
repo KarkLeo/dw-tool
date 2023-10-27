@@ -32,7 +32,9 @@ export class UserService {
 
     const newUser = new UserEntity()
     Object.assign(newUser, user)
-    return await this.userRepository.save(newUser)
+    await this.userRepository.save(newUser)
+    delete newUser.password
+    return newUser
   }
 
   async login(user: LoginUserDto): Promise<UserEntity> {
@@ -60,7 +62,6 @@ export class UserService {
     }
 
     delete userByEmail.password
-
     return userByEmail
   }
 
@@ -71,7 +72,9 @@ export class UserService {
     }
 
     Object.assign(user, data)
-    return await this.userRepository.save(user)
+    await this.userRepository.save(user)
+    delete user.password
+    return user
   }
 
   findById(id: number): Promise<UserEntity> {
