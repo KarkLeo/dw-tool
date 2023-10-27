@@ -147,7 +147,7 @@ describe('User Module', () => {
         )
       })
   })
-  it('/register (POST): with no-right email should return 400', () => {
+  it('/register (POST): with incorrect email should return 400', () => {
     return request(app.getHttpServer())
       .post('/register') // specify the path you are testing
       .send({

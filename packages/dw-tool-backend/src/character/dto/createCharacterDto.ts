@@ -1,4 +1,5 @@
 import { IsEnum, IsInstance, IsNotEmpty, ValidateNested } from 'class-validator'
+import { Type } from 'class-transformer'
 import { ALIGNMENTS, CLASSES, RACES } from 'dw-tool-meta'
 import { AbilitiesDto } from './abilitiesDto'
 
@@ -23,5 +24,6 @@ export class CreateCharacterDto {
   @IsNotEmpty()
   @IsInstance(AbilitiesDto)
   @ValidateNested()
+  @Type(() => AbilitiesDto)
   readonly abilities: AbilitiesDto
 }

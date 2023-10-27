@@ -6,6 +6,8 @@ import {
   Param,
   Post,
   UseGuards,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common'
 import { CharacterService } from './character.service'
 import { AuthGuard } from '../user/guards/auth.guard'
@@ -31,7 +33,7 @@ export class CharacterController {
 
   @Post('/create')
   @UseGuards(AuthGuard)
-  // @UsePipes(new ValidationPipe())
+  @UsePipes(new ValidationPipe())
   async create(
     @Body() createCharacterDto: CreateCharacterDto,
     @User() currentUser: UserEntity,
