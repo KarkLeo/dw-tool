@@ -35,11 +35,19 @@ export class GameService {
   ) {}
 
   async findAll(currentUser: UserEntity): Promise<GameEntity[]> {
+    const gameIds = await this.gameRepository
+      .createQueryBuilder('games')
+      .innerJoin('games.players', 'players')
+      .where('players.user.id = :id', { id: currentUser.id })
+      .select('games.id')
+      .getMany()
+      .then((games) => games.map((game) => game.id))
+
     return await this.gameRepository
       .createQueryBuilder('games')
       .leftJoinAndSelect('games.players', 'players')
       .leftJoinAndSelect('players.user', 'users')
-      .where('players.user.id = :id', { id: currentUser.id })
+      .whereInIds(gameIds)
       .getMany()
   }
 
@@ -64,13 +72,19 @@ export class GameService {
   }
 
   async findOne(id: number): Promise<GameEntity> {
-    return await this.gameRepository
+    const game = await this.gameRepository
       .createQueryBuilder('games')
       .leftJoinAndSelect('games.players', 'players')
       .leftJoinAndSelect('players.user', 'users')
       .leftJoinAndSelect('players.character', 'characters')
       .where('games.id = :id', { id })
       .getOne()
+
+    if (!game) {
+      throw new HttpException('Game does not exist', HttpStatus.NOT_FOUND)
+    }
+
+    return game
   }
 
   checkGameIsReady(game: GameEntity): boolean {

@@ -20,3 +20,13 @@ export const user1Seed = async (dataSource: DataSource): Promise<void> => {
 
   await manager.save(UserEntity, user1)
 }
+
+export const user2Seed = async (dataSource: DataSource): Promise<void> => {
+  const manager = dataSource.manager
+  const user2 = new UserEntity()
+  user2.email = 'user.2@example.com'
+  user2.name = 'User 2'
+  user2.password = '123321'
+
+  await manager.save(UserEntity, user2)
+}

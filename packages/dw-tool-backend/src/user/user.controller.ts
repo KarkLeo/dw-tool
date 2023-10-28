@@ -52,7 +52,7 @@ export class UserController {
     return this.userService.buildUserResponse(updatedUser)
   }
 
-  @Get('users/find/:text')
+  @Get('users/find/:text') // todo update it to query params
   @UseGuards(AuthGuard)
   async find(@Req() req): Promise<UserResponseInterface[]> {
     const users = await this.userService.findByText(req.params.text)

@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common'
 import { GameService } from './game.service'
 import { AuthGuard } from '../user/guards/auth.guard'
 import { GameEntity } from './game.entity'
@@ -25,6 +34,7 @@ export class GameController {
 
   @Post('/create')
   @UseGuards(AuthGuard)
+  @UsePipes(new ValidationPipe())
   async create(
     @Body() createGameDto: CreateGameDto,
     @User() currentUser: UserEntity,
