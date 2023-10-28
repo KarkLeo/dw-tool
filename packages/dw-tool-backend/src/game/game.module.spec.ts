@@ -469,6 +469,20 @@ describe('Character Module', () => {
         })
       })
   })
+  it('/games/:id (GET): with incorrect and invalid id should return 400', () => {
+    return request(app.getHttpServer())
+      .get(`/games/no-id`) // specify the path you are testing
+      .auth(users.user1.token, { type: 'bearer' })
+      .set('Accept', 'application/json') // set the headers
+      .expect(400)
+      .then((response) => {
+        expect(response.body).toEqual({
+          message: 'Validation failed (numeric string is expected)',
+          error: 'Bad Request',
+          statusCode: 400,
+        })
+      })
+  })
 
   afterAll(async () => {
     await Promise.all(

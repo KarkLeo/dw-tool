@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   UseGuards,
   UsePipes,
@@ -43,19 +44,18 @@ export class CharacterController {
 
   @Get(':id')
   @UseGuards(AuthGuard)
-  async findOne(@Param('id') characterId: string): Promise<CharacterEntity> {
-    return this.characterService.findOneById(Number(characterId))
+  async findOne(
+    @Param('id', ParseIntPipe) characterId: number,
+  ): Promise<CharacterEntity> {
+    return this.characterService.findOneById(characterId)
   }
 
   @Delete(':id')
   @UseGuards(AuthGuard)
   async delete(
     @User('id') currentUserId: number,
-    @Param('id') characterId: string,
+    @Param('id', ParseIntPipe) characterId: number,
   ): Promise<CharacterEntity> {
-    return await this.characterService.delete(
-      Number(characterId),
-      currentUserId,
-    )
+    return await this.characterService.delete(characterId, currentUserId)
   }
 }

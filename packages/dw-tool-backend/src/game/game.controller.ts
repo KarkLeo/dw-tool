@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   UseGuards,
   UsePipes,
@@ -44,7 +45,9 @@ export class GameController {
 
   @Get('/:id') // todo fix for string
   @UseGuards(AuthGuard)
-  async findOne(@Param('id') gameId: number): Promise<GameEntity> {
+  async findOne(
+    @Param('id', ParseIntPipe) gameId: number,
+  ): Promise<GameEntity> {
     return this.gameService.findOne(gameId)
   }
 

@@ -538,6 +538,21 @@ describe('Character Module', () => {
         })
       })
   })
+  it('/characters/:id (GET): with incorrect and invalid id should return 400', () => {
+    return request(app.getHttpServer())
+      .get('/characters/no-id') // specify the path you are testing
+      .auth(token, { type: 'bearer' })
+      .set('Accept', 'application/json') // set the headers
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .then((response) => {
+        expect(response.body).toEqual({
+          message: 'Validation failed (numeric string is expected)',
+          error: 'Bad Request',
+          statusCode: 400,
+        })
+      })
+  })
   it('/characters/:id (GET): without token should return 401', () => {
     return request(app.getHttpServer())
       .get('/characters/1') // specify the path you are testing
@@ -646,6 +661,21 @@ describe('Character Module', () => {
         expect(response.body).toEqual({
           statusCode: 404,
           message: 'Character does not exist',
+        })
+      })
+  })
+  it('/characters/:id (DELETE): with incorrect and invalid id should return 400', () => {
+    return request(app.getHttpServer())
+      .delete('/characters/no-id') // specify the path you are testing
+      .auth(token, { type: 'bearer' })
+      .set('Accept', 'application/json') // set the headers
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .then((response) => {
+        expect(response.body).toEqual({
+          message: 'Validation failed (numeric string is expected)',
+          error: 'Bad Request',
+          statusCode: 400,
         })
       })
   })
