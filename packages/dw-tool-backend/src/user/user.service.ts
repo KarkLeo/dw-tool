@@ -95,10 +95,14 @@ export class UserService {
     if (!token) {
       return null
     }
-    const [_, hash] = token.split(' ')
+    try {
+      const [_, hash] = token.split(' ')
 
-    const decoded = verify(hash, JWT_SECRET)
-    return this.findById(decoded.id)
+      const decoded = verify(hash, JWT_SECRET)
+      return this.findById(decoded.id)
+    } catch {
+      return null
+    }
   }
 
   findByText(text: string): Promise<UserEntity[]> {

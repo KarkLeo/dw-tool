@@ -9,7 +9,6 @@ import {
 import { Socket, Server } from 'socket.io'
 import { UseGuards } from '@nestjs/common'
 import { AuthGuard } from '../user/guards/auth.guard'
-import { UserEntity } from '../user/user.entity'
 import { ConnectionService } from './connection/connection.service'
 import { NotificationService } from './notification/notification.service'
 import { NotificationEntity } from './notification/notification.entity'
@@ -30,47 +29,43 @@ export class MessageGateway implements OnGatewayConnection {
 
   @UseGuards(AuthGuard)
   async handleConnection(client: Socket) {
-    if (client.handshake.auth.token) {
-      const connection = await this.connectionService.createConnection(
-        '_ ' + client.handshake.auth.token, // todo reafctor this
-        client.id,
-      )
-      await this.emitNotificationsForConnections([connection])
+    try {
+      if (client.handshake.auth.token) {
+        const connection = await this.connectionService.createConnection(
+          '_ ' + client.handshake.auth.token, // todo refactor this
+          client.id,
+        )
+        await this.emitNotificationsForConnections([connection])
+      } else {
+        this.server.to(client.id).emit('message', {
+          message: 'Connection without credentials',
+        })
+      }
+    } catch (error) {
+      this.server
+        .to(client.id)
+        .emit('message', { error: error.message || 'Some error' })
     }
   }
 
   async handleDisconnect(client: Socket) {
     const connectionId = client.id
-    await this.connectionService.deleteConnection(connectionId)
+    try {
+      await this.connectionService.deleteConnection(connectionId)
+    } catch (error) {
+      console.warn('DISCONNECT ERROR IN MESSAGE GATEWAY: \n', error)
+    }
   }
 
   @SubscribeMessage('message')
-  handleMessage(@MessageBody() message: any) {
-    this.server.emit('message', {
+  handleMessage(
+    @MessageBody() message: any,
+    @ConnectedSocket() client: Socket,
+  ) {
+    this.server.to(client.id).emit('message', {
       message,
       time: new Date().toDateString(),
     })
-  }
-
-  async sendMessageToUser(user: UserEntity, message: any) {
-    const connections = await this.connectionService.findConnectionsByUser(
-      user.id,
-    )
-
-    connections.forEach((connection) => {
-      this.server.to(connection.connectionId).emit('message', {
-        message,
-        time: new Date().toDateString(),
-      })
-    })
-  }
-
-  async sendAllNotificationsForUser(user: UserEntity) {
-    const connections = await this.connectionService.findConnectionsByUser(
-      user.id,
-    )
-
-    await this.emitNotificationsForConnections(connections)
   }
 
   async send(notification: NotificationEntity): Promise<void> {
