@@ -42,7 +42,7 @@ export class GameController {
     return this.gameService.create(currentUser, createGameDto)
   }
 
-  @Get('/:id')
+  @Get('/:id') // todo fix for string
   @UseGuards(AuthGuard)
   async findOne(@Param('id') gameId: number): Promise<GameEntity> {
     return this.gameService.findOne(gameId)
